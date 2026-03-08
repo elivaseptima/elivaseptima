@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Elif Eylül | Kütüphanem</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#0a0906;--bg2:#111009;--bg3:#1a1710;--border:#272318;--text:#e2d9cc;--muted:#7a7060;--gold:#c8a96a;--gold2:#9c7c42;--rust:#a04e3a;}
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    body{background:var(--bg);color:var(--text);font-family:'Jost',sans-serif;font-weight:300;font-size:17px;line-height:1.75;overflow-x:hidden;}
+    nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content:space-between;align-items:center;padding:1.3rem 5rem;background:rgba(10,9,6,0.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);}
+    .logo{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:300;letter-spacing:0.18em;color:var(--gold);text-decoration:none;text-transform:uppercase;}
+    .nav-links{display:flex;gap:2.5rem;list-style:none;}
+    .nav-links a{color:var(--muted);text-decoration:none;font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;transition:color .3s;}
+    .nav-links a:hover{color:var(--gold);}
+    .hero{min-height:100vh;display:grid;grid-template-columns:1.1fr 0.9fr;}
+    .hero-left{display:flex;flex-direction:column;justify-content:center;padding:9rem 5rem 5rem;}
+    .hero-tag{font-size:0.68rem;letter-spacing:0.35em;text-transform:uppercase;color:var(--gold);margin-bottom:2rem;opacity:0;animation:up .9s .1s forwards;}
+    .hero-name{font-family:'Cormorant Garamond',serif;font-size:clamp(3.5rem,6vw,6.5rem);font-weight:300;line-height:1;margin-bottom:0.5rem;opacity:0;animation:up .9s .25s forwards;}
+    .hero-name em{font-style:italic;color:var(--gold);}
+    .hero-desc{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-style:italic;color:var(--muted);margin-bottom:2.5rem;max-width:40ch;opacity:0;animation:up .9s .4s forwards;}
+    .hero-meta{display:flex;gap:0.8rem;flex-wrap:wrap;margin-bottom:3rem;opacity:0;animation:up .9s .55s forwards;}
+    .meta-pill{font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);border:1px solid var(--border);padding:0.38rem 0.9rem;}
+    .hero-btn{display:inline-flex;align-items:center;gap:1rem;text-decoration:none;color:var(--gold);font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;border-bottom:1px solid var(--gold2);padding-bottom:0.35rem;width:fit-content;transition:gap .35s;opacity:0;animation:up .9s .7s forwards;}
+    .hero-btn:hover{gap:1.7rem;}
+    .hero-right{position:relative;border-left:1px solid var(--border);overflow:hidden;}
+    .hero-right-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 60% 40%,rgba(200,169,106,0.07) 0%,transparent 70%),var(--bg2);}
+    .floating-cards{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;gap:1px;padding:7rem 3rem 5rem;opacity:0;animation:fade .8s 1.1s forwards;}
+    .fc{display:flex;align-items:center;gap:1.2rem;padding:0.95rem 1.4rem;background:rgba(26,23,16,0.7);border:1px solid var(--border);border-left:2px solid var(--gold2);transition:transform .3s,border-color .3s;cursor:default;}
+    .fc:hover{transform:translateX(8px);border-left-color:var(--gold);}
+    .fc-spine{width:10px;height:50px;border-radius:1px;flex-shrink:0;}
+    .fc-title{font-family:'Cormorant Garamond',serif;font-size:0.93rem;color:var(--text);}
+    .fc-author{font-size:0.7rem;color:var(--muted);}
+    .fc-stars{font-size:0.68rem;color:var(--gold);margin-top:0.1rem;}
+    .quote-strip{position:absolute;bottom:0;left:0;right:0;padding:1rem 3rem;border-top:1px solid var(--border);font-family:'Cormorant Garamond',serif;font-style:italic;font-size:0.85rem;color:var(--muted);background:var(--bg2);}
+    section{padding:6rem 5rem;}
+    .s-label{font-size:0.65rem;letter-spacing:0.35em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;}
+    .s-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,3.5vw,3rem);font-weight:300;line-height:1.15;margin-bottom:2rem;}
+    .s-title em{font-style:italic;color:var(--gold);}
+    .stats-banner{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:2.5rem 5rem;display:flex;justify-content:center;}
+    .sbn{flex:1;text-align:center;padding:1rem 2rem;border-right:1px solid var(--border);}
+    .sbn:last-child{border-right:none;}
+    .sbn-n{font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:300;color:var(--gold);line-height:1;}
+    .sbn-l{font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);margin-top:0.3rem;}
+    #about{background:var(--bg);border-bottom:1px solid var(--border);display:grid;grid-template-columns:1fr 1.3fr;gap:6rem;align-items:center;}
+    .photo-frame{aspect-ratio:3/4;background:var(--bg3);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative;}
+    .photo-frame::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(-45deg,transparent,transparent 24px,rgba(200,169,106,0.025) 24px,rgba(200,169,106,0.025) 25px);}
+    .photo-inner{z-index:1;text-align:center;font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--muted);font-size:0.9rem;line-height:2.2;}
+    .corner{position:absolute;width:18px;height:18px;border-color:var(--gold2);border-style:solid;}
+    .tl{top:12px;left:12px;border-width:1px 0 0 1px;}.tr{top:12px;right:12px;border-width:1px 1px 0 0;}
+    .bl{bottom:12px;left:12px;border-width:0 0 1px 1px;}.br{bottom:12px;right:12px;border-width:0 1px 1px 0;}
+    .shadow-box{position:absolute;bottom:-14px;right:-14px;width:100%;height:100%;border:1px solid var(--border);z-index:-1;}
+    .about-visual{position:relative;}
+    .about-para{color:var(--muted);margin-bottom:1.1rem;font-size:1.02rem;}
+    .about-tags{display:flex;gap:0.7rem;flex-wrap:wrap;margin-top:1.8rem;}
+    .tag{font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;border:1px solid var(--border);padding:0.28rem 0.8rem;color:var(--muted);transition:all .3s;cursor:default;}
+    .tag:hover{border-color:var(--gold);color:var(--gold);}
+    #books{background:var(--bg2);border-top:1px solid var(--border);}
+    .books-controls{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:2.5rem;flex-wrap:wrap;gap:1.5rem;}
+    .search-wrap{position:relative;}
+    .search-input{background:transparent;border:1px solid var(--border);color:var(--text);font-family:'Jost',sans-serif;font-size:0.8rem;padding:0.5rem 1rem 0.5rem 2.2rem;width:220px;outline:none;transition:border-color .3s;}
+    .search-input:focus{border-color:var(--gold);}
+    .search-input::placeholder{color:var(--muted);}
+    .search-icon{position:absolute;left:0.7rem;top:50%;transform:translateY(-50%);color:var(--muted);font-size:0.8rem;pointer-events:none;}
+    .filters{display:flex;gap:0.5rem;flex-wrap:wrap;}
+    .fbtn{padding:0.38rem 1rem;background:transparent;border:1px solid var(--border);color:var(--muted);font-family:'Jost',sans-serif;font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;transition:all .3s;}
+    .fbtn:hover,.fbtn.on{border-color:var(--gold);color:var(--gold);}
+    .books-count{font-size:0.72rem;color:var(--muted);margin-bottom:1.5rem;}
+    .books-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:1.8rem;}
+    .bcard{cursor:pointer;transition:transform .35s;position:relative;}
+    .bcard:hover{transform:translateY(-8px);}
+    .bcard-cover{aspect-ratio:2/3;display:flex;align-items:flex-end;padding:0.9rem;position:relative;overflow:hidden;}
+    .bcard-cover::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.75) 0%,transparent 50%);}
+    .bcard-cover-title{font-family:'Cormorant Garamond',serif;font-size:0.85rem;color:#fff;text-shadow:0 1px 6px rgba(0,0,0,0.9);position:relative;z-index:1;line-height:1.25;}
+    .bcard-title{font-family:'Cormorant Garamond',serif;font-size:0.95rem;margin-bottom:0.12rem;margin-top:0.7rem;}
+    .bcard-author{font-size:0.7rem;color:var(--muted);margin-bottom:0.2rem;}
+    .bcard-stars{font-size:0.68rem;color:var(--gold);}
+    .bcard-badge{position:absolute;top:8px;right:8px;color:#fff;font-size:0.52rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.18rem 0.5rem;z-index:2;}
+    .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:1000;align-items:center;justify-content:center;padding:2rem;}
+    .modal-overlay.open{display:flex;}
+    .modal{background:var(--bg2);border:1px solid var(--border);max-width:540px;width:100%;max-height:85vh;overflow-y:auto;position:relative;}
+    .modal-close{position:absolute;top:1rem;right:1.2rem;background:none;border:none;color:var(--muted);font-size:1.3rem;cursor:pointer;z-index:1;}
+    .modal-close:hover{color:var(--gold);}
+    .modal-cover{height:180px;display:flex;align-items:flex-end;padding:1.5rem;}
+    .modal-title{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:400;color:#fff;text-shadow:0 2px 10px rgba(0,0,0,0.9);line-height:1.2;}
+    .modal-body{padding:1.8rem 2rem;}
+    .modal-author{color:var(--gold);font-size:0.78rem;letter-spacing:0.1em;margin-bottom:0.8rem;}
+    .modal-stars{font-size:1rem;color:var(--gold);margin-bottom:0.8rem;}
+    .modal-moods{display:flex;gap:0.4rem;flex-wrap:wrap;margin-bottom:1rem;}
+    .mood-pill{font-size:0.58rem;letter-spacing:0.1em;text-transform:capitalize;border:1px solid var(--border);padding:0.18rem 0.55rem;color:var(--muted);}
+    .modal-review{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1rem;color:var(--text);line-height:1.7;border-left:2px solid var(--gold2);padding-left:1.2rem;margin-bottom:0.8rem;}
+    .modal-date{font-size:0.63rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);}
+    #highlights{background:var(--bg);border-top:1px solid var(--border);}
+    .highlights-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:2.5rem;}
+    .hl-card{border:1px solid var(--border);padding:2rem;background:var(--bg2);position:relative;overflow:hidden;}
+    .hl-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,var(--gold2),var(--gold),var(--gold2));}
+    .hl-label{font-size:0.58rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:0.7rem;}
+    .hl-title{font-family:'Cormorant Garamond',serif;font-size:1.08rem;margin-bottom:0.25rem;line-height:1.3;}
+    .hl-author{font-size:0.7rem;color:var(--muted);}
+    .hl-stars{font-size:0.72rem;color:var(--gold);margin-top:0.3rem;}
+    #blog{background:var(--bg2);border-top:1px solid var(--border);}
+    .blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:2.5rem;}
+    .bpost{border:1px solid var(--border);padding:1.8rem;background:var(--bg);transition:border-color .35s,transform .35s;cursor:pointer;}
+    .bpost:hover{border-color:var(--gold);transform:translateY(-4px);}
+    .bpost-date{font-size:0.63rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;}
+    .bpost-title{font-family:'Cormorant Garamond',serif;font-size:1.15rem;line-height:1.3;margin-bottom:0.7rem;}
+    .bpost-exc{font-size:0.85rem;color:var(--muted);font-style:italic;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}
+    .bpost-cat{display:inline-block;margin-top:1.2rem;font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);border:1px solid var(--border);padding:0.18rem 0.6rem;}
+    #contact{background:var(--bg);border-top:1px solid var(--border);text-align:center;}
+    .contact-intro{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--muted);font-size:1.1rem;margin-bottom:3rem;max-width:44ch;margin-inline:auto;}
+    .contact-grid{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap;}
+    .clink{display:flex;flex-direction:column;align-items:center;gap:0.5rem;padding:1.6rem 2.2rem;border:1px solid var(--border);color:var(--muted);text-decoration:none;transition:all .35s;min-width:120px;}
+    .clink:hover{border-color:var(--gold);color:var(--gold);}
+    .clink-icon{font-size:1.3rem;}
+    .clink-label{font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;}
+    footer{background:var(--bg2);border-top:1px solid var(--border);padding:1.6rem 5rem;display:flex;justify-content:space-between;align-items:center;font-size:0.68rem;letter-spacing:0.1em;color:var(--muted);}
+    .foot-logo{font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--gold);letter-spacing:0.2em;}
+    @keyframes up{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes fade{from{opacity:0}to{opacity:1}}
+    .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s,transform .6s;}
+    .reveal.visible{opacity:1;transform:translateY(0);}
+    @media(max-width:900px){
+      nav{padding:1rem 1.5rem;}.nav-links{gap:1.5rem;}
+      .hero{grid-template-columns:1fr;}.hero-right{display:none;}
+      .hero-left{padding:8rem 1.8rem 4rem;}
+      section{padding:4rem 1.8rem;}
+      #about{grid-template-columns:1fr;}.about-visual{display:none;}
+      .blog-grid,.highlights-grid{grid-template-columns:1fr;}
+      .stats-banner{padding:2rem 1.5rem;flex-wrap:wrap;}
+      footer{flex-direction:column;gap:1rem;text-align:center;}
+    }
+  </style>
+</head>
+<body>
+<nav>
+  <a href="#" class="logo">Elif Eylül</a>
+  <ul class="nav-links">
+    <li><a href="#about">Hakkımda</a></li>
+    <li><a href="#books">Kütüphane</a></li>
+    <li><a href="#highlights">Favoriler</a></li>
+    <li><a href="#blog">Yazılar</a></li>
+    <li><a href="#contact">İletişim</a></li>
+  </ul>
+</nav>
+
+<div class="hero">
+  <div class="hero-left">
+    <p class="hero-tag">Kişisel Kütüphane &amp; Kitap Blogu</p>
+    <h1 class="hero-name">Elif<br><em>Eylül</em></h1>
+    <p class="hero-desc">Kitaplar, satır aralarında saklı dünyalar ve onlar üzerine düşünceler.</p>
+    <div class="hero-meta">
+      <span class="meta-pill">20 Yaşında</span>
+      <span class="meta-pill">Uluslararası İlişkiler</span>
+      <span class="meta-pill">Okur &amp; Yazar</span>
+    </div>
+    <a href="#books" class="hero-btn">Kütüphaneyi Keşfet →</a>
+  </div>
+  <div class="hero-right">
+    <div class="hero-right-bg"></div>
+    <div class="floating-cards">
+      <div class="fc"><div class="fc-spine" style="background:linear-gradient(180deg,#3d2518,#7a4830)"></div><div><div class="fc-title">The Stranger</div><div class="fc-author">Albert Camus</div><div class="fc-stars">★★★★★</div></div></div>
+      <div class="fc"><div class="fc-spine" style="background:linear-gradient(180deg,#1a2a38,#2a4a68)"></div><div><div class="fc-title">Rebecca</div><div class="fc-author">Daphne du Maurier</div><div class="fc-stars">★★★★★</div></div></div>
+      <div class="fc"><div class="fc-spine" style="background:linear-gradient(180deg,#3a2a40,#5a3a60)"></div><div><div class="fc-title">Rüzgârın Adı</div><div class="fc-author">Patrick Rothfuss</div><div class="fc-stars">★★★★★</div></div></div>
+      <div class="fc"><div class="fc-spine" style="background:linear-gradient(180deg,#1a3a2a,#2a6a4a)"></div><div><div class="fc-title">Küçük Prens</div><div class="fc-author">Antoine de Saint-Exupéry</div><div class="fc-stars">★★★★★</div></div></div>
+      <div class="fc"><div class="fc-spine" style="background:linear-gradient(180deg,#3a3a1a,#6a6a2a)"></div><div><div class="fc-title">İntermezzo</div><div class="fc-author">Sally Rooney</div><div class="fc-stars">★★★★★</div></div></div>
+    </div>
+    <div class="quote-strip">"Okuduğun her kitap, sana yeni bir hayat sunar."</div>
+  </div>
+</div>
+
+<div class="stats-banner">
+  <div class="sbn"><div class="sbn-n">76</div><div class="sbn-l">Okunan Kitap</div></div>
+  <div class="sbn"><div class="sbn-n">21</div><div class="sbn-l">5 Yıldızlı</div></div>
+  <div class="sbn"><div class="sbn-n">4.0</div><div class="sbn-l">Ortalama Puan</div></div>
+  <div class="sbn"><div class="sbn-n">5</div><div class="sbn-l">Bırakılan</div></div>
+  <div class="sbn"><div class="sbn-n">3</div><div class="sbn-l">Okuma Listesi</div></div>
+</div>
+
+<section id="about">
+  <div class="about-visual">
+    <div class="photo-frame">
+      <div class="corner tl"></div><div class="corner tr"></div>
+      <div class="corner bl"></div><div class="corner br"></div>
+      <div class="photo-inner">Fotoğrafınız<br>buraya gelecek</div>
+    </div>
+    <div class="shadow-box"></div>
+  </div>
+  <div>
+    <p class="s-label">Hakkımda</p>
+    <h2 class="s-title">Merhaba, ben <em>Elif Eylül</em></h2>
+    <p class="about-para">20 yaşındayım ve Uluslararası İlişkiler ikinci sınıf öğrencisiyim. Kitaplar ve onlarla ilgili her şey hayatımın ayrılmaz bir parçası.</p>
+    <p class="about-para">Bu sayfa benim dijital kütüphanem — StoryGraph'ta kaydettiğim tüm kitapları, notlarımı ve onlar üzerine düşündüklerimi burada paylaşıyorum. Klasiklerden çağdaş romana, mitolojiden siyaset bilimine uzanan geniş bir yelpazede okuyorum.</p>
+    <p class="about-para" style="font-style:italic;">Okumak; anlamak, sorgulamak ve büyümek demek benim için.</p>
+    <div class="about-tags">
+      <span class="tag">Dünya Edebiyatı</span><span class="tag">Klasikler</span>
+      <span class="tag">Siyasi Tarih</span><span class="tag">Mitoloji</span>
+      <span class="tag">Felsefe</span><span class="tag">Çağdaş Kurgu</span>
+      <span class="tag">Fantastik</span><span class="tag">Türk Edebiyatı</span>
+    </div>
+  </div>
+</section>
+
+<section id="books">
+  <div class="books-controls">
+    <div>
+      <p class="s-label">Kütüphane</p>
+      <h2 class="s-title">Kitaplarım</h2>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:0.8rem;align-items:flex-end;">
+      <div class="search-wrap">
+        <span class="search-icon">⌕</span>
+        <input class="search-input" id="searchInput" placeholder="Kitap veya yazar ara..." oninput="renderBooks()">
+      </div>
+      <div class="filters">
+        <button class="fbtn on" onclick="setFilter(this,'all')">Tümü</button>
+        <button class="fbtn" onclick="setFilter(this,'read')">Okudum</button>
+        <button class="fbtn" onclick="setFilter(this,'dnf')">Bıraktım</button>
+        <button class="fbtn" onclick="setFilter(this,'toread')">Okuyacağım</button>
+        <button class="fbtn" onclick="setFilter(this,'5star')">★ 5 Yıldız</button>
+      </div>
+    </div>
+  </div>
+  <div class="books-count" id="booksCount"></div>
+  <div class="books-grid" id="booksGrid"></div>
+</section>
+
+<section id="highlights">
+  <p class="s-label">Öne Çıkanlar</p>
+  <h2 class="s-title">Favorilerim &amp; Önerilerim</h2>
+  <div class="highlights-grid">
+    <div class="hl-card reveal"><div class="hl-label">En Çok Etkilendiğim</div><div class="hl-title">Sular Üstünde Gökler Altında</div><div class="hl-author">Kaan Murat Yanık</div><div class="hl-stars">★★★★★</div><p style="font-size:0.82rem;color:var(--muted);margin-top:0.8rem;font-style:italic;">"Betimlemeleri samimiydi, tıpkı romanın içindeymişim gibi okudum."</p></div>
+    <div class="hl-card reveal"><div class="hl-label">En Hızlı Bitirdiğim</div><div class="hl-title">Hizmetçi</div><div class="hl-author">Freida McFadden</div><div class="hl-stars">★★★★¾</div><p style="font-size:0.82rem;color:var(--muted);margin-top:0.8rem;font-style:italic;">"ALLAHIMMMMM İYİYDİ — her şeyin yerli yerine oturmasını çok sevdim."</p></div>
+    <div class="hl-card reveal"><div class="hl-label">Herkesin Okuması Gereken</div><div class="hl-title">Rebecca</div><div class="hl-author">Daphne du Maurier</div><div class="hl-stars">★★★★★</div><p style="font-size:0.82rem;color:var(--muted);margin-top:0.8rem;font-style:italic;">Dark, mysterious, tense — mükemmel bir gotik gerilim klasiği.</p></div>
+    <div class="hl-card reveal"><div class="hl-label">Hayal Kırıklığı</div><div class="hl-title">Final (Hush Hush #4)</div><div class="hl-author">Becca Fitzpatrick</div><div class="hl-stars">★★</div><p style="font-size:0.82rem;color:var(--muted);margin-top:0.8rem;font-style:italic;">"O kadar sıkıldım ki sıkım sıkım sıkıldım... serinin en sıkıcı kitabıydı."</p></div>
+    <div class="hl-card reveal"><div class="hl-label">Kafamı Uçuran Şiir</div><div class="hl-title">Dörtlükler</div><div class="hl-author">Omar Khayyám</div><div class="hl-stars">★★★★★</div><p style="font-size:0.82rem;color:var(--muted);margin-top:0.8rem;font-style:italic;">"i love this man's mind so fucking much"</p></div>
+    <div class="hl-card reveal"><div class="hl-label">En İyi Fantastik</div><div class="hl-title">Rüzgârın Adı</div><div class="hl-author">Patrick Rothfuss</div><div class="hl-stars">★★★★★</div><p style="font-size:0.82rem;color:var(--muted);margin-top:0.8rem;font-style:italic;">"One of the best fantasy books I've ever read."</p></div>
+  </div>
+</section>
+
+<section id="blog">
+  <p class="s-label">Yazılar</p>
+  <h2 class="s-title">Notlar &amp; Düşünceler</h2>
+  <div class="blog-grid">
+    <div class="bpost reveal"><div class="bpost-date">Mart 2026</div><h3 class="bpost-title">Sally Rooney'nin İntermezzo'su: Nefret Ettiğim Karakterleri Neden Bu Kadar Sevdim?</h3><p class="bpost-exc">Tüm karakterlerden nefret ettim ama kitaba o kadar aşığım ki — bu çelişkiyi nasıl açıklarım bilmiyorum. Rooney'nin yazarlığı üzerine düşüncelerim.</p><span class="bpost-cat">Çağdaş Kurgu</span></div>
+    <div class="bpost reveal"><div class="bpost-date">Şubat 2026</div><h3 class="bpost-title">Hizmetçi Serisi: Bir Gerilim Romanı Nasıl Bu Kadar Bağımlılık Yapar?</h3><p class="bpost-exc">Freida McFadden'ın serisini 4 gün içinde bitirdim. Plot twist'ler, karakterler ve serinin genel değerlendirmesi.</p><span class="bpost-cat">Gerilim</span></div>
+    <div class="bpost reveal"><div class="bpost-date">Ocak 2025</div><h3 class="bpost-title">Kaan Murat Yanık'ı Okumak: Türk Edebiyatında Büyülü Gerçekçilik</h3><p class="bpost-exc">Sular Üstünde Gökler Altında ile başladım, Uzakların Şarkısı ile devam ettim. Yanık'ın kaleminin büyüsü nerede yatıyor?</p><span class="bpost-cat">Türk Edebiyatı</span></div>
+  </div>
+</section>
+
+<section id="contact">
+  <p class="s-label">İletişim</p>
+  <h2 class="s-title">Merhaba Deyin</h2>
+  <p class="contact-intro">Kitap önerileri, düşünceler veya sadece selamlaşmak için — her mesaja sevinirim.</p>
+  <div class="contact-grid">
+    <a href="mailto:elif@ornek.com" class="clink"><span class="clink-icon">✉</span><span class="clink-label">E-posta</span></a>
+    <a href="#" class="clink"><span class="clink-icon">📸</span><span class="clink-label">Instagram</span></a>
+    <a href="#" class="clink"><span class="clink-icon">𝕏</span><span class="clink-label">Twitter / X</span></a>
+    <a href="#" class="clink"><span class="clink-icon">in</span><span class="clink-label">LinkedIn</span></a>
+  </div>
+</section>
+
+<footer>
+  <span class="foot-logo">Elif Eylül</span>
+  <span>© 2025 · Tüm hakları saklıdır.</span>
+  <span>StoryGraph verisiyle oluşturuldu</span>
+</footer>
+
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+  <div class="modal" id="modal">
+    <button class="modal-close" onclick="closeModalBtn()">✕</button>
+    <div class="modal-cover" id="modalCover"><div class="modal-title" id="modalTitle"></div></div>
+    <div class="modal-body">
+      <div class="modal-author" id="modalAuthor"></div>
+      <div class="modal-stars" id="modalStars"></div>
+      <div class="modal-moods" id="modalMoods"></div>
+      <div class="modal-review" id="modalReview"></div>
+      <div class="modal-date" id="modalDate"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+const BOOKS=[
+  {t:"The Sweetest Oblivion",a:"Danielle Lori",s:"read",r:1.0,m:"",rev:"",d:"2023/07"},
+  {t:"Bana Dokunma",a:"Tahereh Mafi",s:"read",r:4.5,m:"adventurous, dark, tense",rev:"",d:"2023/11"},
+  {t:"Evlilik Portresi",a:"Maggie O'Farrell",s:"read",r:3.75,m:"adventurous, dark, emotional, mysterious, sad",rev:"",d:"2024/01"},
+  {t:"Hush, Hush",a:"Becca Fitzpatrick",s:"read",r:3.0,m:"",rev:"",d:"2025/07"},
+  {t:"Çığlık",a:"Becca Fitzpatrick",s:"read",r:2.0,m:"",rev:"",d:"2025/07"},
+  {t:"Siyaset",a:"Andrew Heywood",s:"read",r:4.0,m:"informative",rev:"",d:"2025/01"},
+  {t:"İntermezzo",a:"Sally Rooney",s:"read",r:5.0,m:"",rev:"tüm karakterlerden nefret ettim ama kitaba o kadar aşığım ki. ayrıca sally rooney'nin peter'ı çok sevdiğini düşünüyorum.",d:"2025/04"},
+  {t:"Küçük Prens",a:"Antoine de Saint-Exupéry",s:"read",r:5.0,m:"emotional, inspiring, lighthearted, reflective, sad",rev:"her zaman kalbimde çok özel bir kitap olacaksın.",d:"2024/02"},
+  {t:"Karanlıkta Yaptığımız Şeyler",a:"Jennifer Hillier",s:"dnf",r:null,m:"",rev:"bilmiyorum şu anlık pek sarmadı, sonra devam edebilirim.",d:"2026/02"},
+  {t:"The Stranger",a:"Albert Camus",s:"read",r:5.0,m:"",rev:"",d:"2023/04"},
+  {t:"Udi",a:"Fatma Aliye",s:"read",r:3.0,m:"",rev:"",d:"2025/06"},
+  {t:"Hizmetçinin Düğünü",a:"Freida McFadden",s:"read",r:3.0,m:"relaxing",rev:"yani ekstra bi gerilim yaratmaya gerek yokmuş direkt düğünlerinden haberdar olsak yeter gibiydi",d:"2026/02"},
+  {t:"Hizmetçi",a:"Freida McFadden",s:"read",r:4.75,m:"adventurous, tense",rev:"ALLAHIMMMMM İYİYDİ ÇOOOK ÇOK İYİYDİ — her şeyin en sonunda açıklanmasını, her şeyin yerli yerine oturmasını, plot twisti ÇOK SEVDİM",d:"2026/02"},
+  {t:"Bir Dinozorun Anıları",a:"Mîna Urgan",s:"dnf",r:null,m:"",rev:"",d:"2024/01"},
+  {t:"Rebecca",a:"Daphne du Maurier",s:"read",r:5.0,m:"dark, mysterious, tense",rev:"",d:"2024/01"},
+  {t:"Askerin Dönüşü",a:"Rebecca West",s:"read",r:3.0,m:"emotional, sad",rev:"",d:"2023/05"},
+  {t:"Fareler ve İnsanlar",a:"John Steinbeck",s:"read",r:4.5,m:"emotional, sad, tense",rev:"I could've read this masterpiece earlier if they hadn't constantly pressured me at school",d:"2025/01"},
+  {t:"Usta ve Margarita",a:"Mikhail Bulgakov",s:"read",r:null,m:"",rev:"",d:"2023/10"},
+  {t:"Carmilla",a:"J. Sheridan Le Fanu",s:"read",r:null,m:"",rev:"",d:"2024/02"},
+  {t:"Sular Üstünde Gökler Altında",a:"Kaan Murat Yanık",s:"read",r:5.0,m:"adventurous, emotional, informative, mysterious, sad",rev:"İlk defa Kaan Murat Yanık'ın kaleminden bir kitap okudum ve aşırı hoşuma gitti, beklentilerimin üstünde olduğunu söyleyebilirim.",d:"2023/08"},
+  {t:"Believe Me",a:"Tahereh Mafi",s:"read",r:4.5,m:"emotional, funny, relaxing",rev:"",d:"2024/01"},
+  {t:"My Dark Vanessa",a:"Kate Elizabeth Russell",s:"read",r:5.0,m:"dark, emotional",rev:"",d:"2023/05"},
+  {t:"Restore Me",a:"Tahereh Mafi",s:"read",r:4.25,m:"challenging, emotional, tense",rev:"",d:"2023/12"},
+  {t:"Haunting Adeline",a:"H.D. Carlton",s:"read",r:null,m:"",rev:"",d:"2023/05"},
+  {t:"Shadow Me",a:"Tahereh Mafi",s:"read",r:4.0,m:"funny, sad, tense",rev:"",d:"2023/12"},
+  {t:"Sessizlik",a:"Becca Fitzpatrick",s:"read",r:3.0,m:"tense",rev:"",d:"2025/08"},
+  {t:"Scapin'in Dolapları",a:"Molière",s:"read",r:4.0,m:"funny, relaxing",rev:"",d:"2025/03"},
+  {t:"Theogonia - İşler ve Günler",a:"Hesiod",s:"read",r:4.0,m:"informative, inspiring, reflective",rev:"Theogonia, Hesiodos'un mitolojik tanrıları ve tanrıçaları anlattığı bir şiirsel eser.",d:"2023/05"},
+  {t:"Yeni Hayat",a:"Dante Alighieri",s:"read",r:5.0,m:"inspiring, lighthearted, sad",rev:"",d:"2024/05"},
+  {t:"Lady Chatterley's Lover",a:"D.H. Lawrence",s:"read",r:5.0,m:"",rev:"",d:"2023/05"},
+  {t:"Salamina Askerleri",a:"Javier Cercas",s:"read",r:3.5,m:"",rev:"",d:"2026/03"},
+  {t:"Fransız Teğmenin Kadını",a:"John Fowles",s:"read",r:3.0,m:"emotional, mysterious, sad",rev:"",d:"2023/07"},
+  {t:"Sessiz Hasta",a:"Alex Michaelides",s:"read",r:3.75,m:"mysterious, tense",rev:"",d:"2023/12"},
+  {t:"Vişne Bahçesi",a:"Anton Chekhov",s:"read",r:5.0,m:"",rev:"",d:"2023/07"},
+  {t:"Kremlin'in Büyücüsü",a:"Giuliano da Empoli",s:"read",r:4.0,m:"informative",rev:"if you want to know more or less about the current politics of russia... it is written very well, easily and fluently.",d:"2024/01"},
+  {t:"Aeneis",a:"Vergilius",s:"read",r:5.0,m:"adventurous, challenging, informative, inspiring, mysterious, tense",rev:"",d:"2023/07"},
+  {t:"Kumarbaz",a:"Fyodor Dostoevsky",s:"read",r:null,m:"",rev:"",d:"2023/11"},
+  {t:"Gazap ve Alevin Kaderi",a:"K.A. Tucker",s:"read",r:3.0,m:"adventurous, challenging, emotional, mysterious, tense",rev:"",d:"2025/11"},
+  {t:"Dörtlükler",a:"Omar Khayyám",s:"read",r:5.0,m:"dark, inspiring, tense",rev:"i love this man's mind so fucking much",d:"2024/02"},
+  {t:"Bronz Atlı",a:"Paullina Simons",s:"read",r:5.0,m:"adventurous, dark, emotional, sad",rev:"",d:"2023/11"},
+  {t:"Cathay",a:"Ezra Pound",s:"read",r:4.0,m:"emotional, sad",rev:"",d:"2026/03"},
+  {t:"Babil",a:"R.F. Kuang",s:"read",r:3.0,m:"dark, informative, tense",rev:"it was a book that was slow at first and then it sped up... i couldn't get the motivation of the characters in my head.",d:"2025/03"},
+  {t:"Alacaklılar",a:"August Strindberg",s:"read",r:2.0,m:"",rev:"I gave 2 stars just for the female character.",d:"2025/01"},
+  {t:"Türk Masalları",a:"Derleme",s:"read",r:3.0,m:"adventurous, funny",rev:"",d:"2024/06"},
+  {t:"Gelin",a:"Ali Hazelwood",s:"read",r:4.0,m:"funny, hopeful, lighthearted, tense",rev:"bu kitabı sevdim. daha önce bu tarz bir kurguya sahip bir kitap okumamıştım.",d:"2026/01"},
+  {t:"Final (Hush Hush #4)",a:"Becca Fitzpatrick",s:"read",r:2.0,m:"",rev:"o kadar sıkıldım ki sıkım sıkım sıkıldım yani kaç ay oldu bitiremedim",d:"2025/09"},
+  {t:"Ütopya",a:"Thomas More",s:"read",r:null,m:"",rev:"",d:"2023/07"},
+  {t:"Tavşan",a:"Mona Awad",s:"read",r:3.0,m:"",rev:"",d:"2025/06"},
+  {t:"Kadının Adı Yok",a:"Duygu Asena",s:"read",r:2.0,m:"",rev:"",d:"2025/10"},
+  {t:"Anne Frank'ın Hatıra Defteri",a:"Anne Frank",s:"read",r:5.0,m:"adventurous, dark, emotional, sad, tense",rev:"",d:"2023/06"},
+  {t:"Faust",a:"Johann Wolfgang von Goethe",s:"read",r:4.0,m:"adventurous, emotional, funny, inspiring, mysterious",rev:"",d:"2023/10"},
+  {t:"Dünyasızlar",a:"Kaan Murat Yanık",s:"read",r:3.75,m:"challenging, dark, emotional, mysterious",rev:"",d:"2023/10"},
+  {t:"Butimar",a:"Kaan Murat Yanık",s:"read",r:3.75,m:"adventurous, dark, emotional, mysterious, sad",rev:"",d:"2023/11"},
+  {t:"Hayal Et Beni",a:"Tahereh Mafi",s:"read",r:5.0,m:"adventurous, dark, emotional, hopeful, sad, tense",rev:"PERFECT ENDINGGG AH MY DEAR KENJI",d:"2024/01"},
+  {t:"The Odyssey",a:"Homer",s:"read",r:5.0,m:"adventurous, emotional, funny, informative, inspiring, sad",rev:"",d:"2023/04"},
+  {t:"Beni Bırakma",a:"Tahereh Mafi",s:"read",r:4.75,m:"adventurous, challenging, emotional, funny, inspiring, sad",rev:"",d:"2023/11"},
+  {t:"Death's Obsession",a:"Avina St. Graves",s:"read",r:4.0,m:"dark, mysterious, tense",rev:"i simply don't know why i loved that book so much.",d:"2023/07"},
+  {t:"Kuyrukluyıldız Altında Bir İzdivaç",a:"Hüseyin Rahmi Gürpınar",s:"read",r:4.0,m:"",rev:"Bu kitap o kadar güzeldi ki. Hüseyin Rahmi o kadar yerinde tespitler yapıyor.",d:"2025/06"},
+  {t:"Hizmetçi İzliyor",a:"Freida McFadden",s:"read",r:2.25,m:"mysterious",rev:"",d:"2026/02"},
+  {t:"Yakın Tarihin Gerçekleri",a:"İlber Ortaylı",s:"read",r:3.0,m:"informative",rev:"",d:"2023/08"},
+  {t:"Antalya'nın Çocukları",a:"Tansu Duran",s:"read",r:4.0,m:"",rev:"",d:"2024/03"},
+  {t:"Rüzgârın Adı",a:"Patrick Rothfuss",s:"read",r:5.0,m:"adventurous, emotional, inspiring, mysterious",rev:"one of the best fantasy books i've ever read.",d:"2023/08"},
+  {t:"Ariel ve Seçme Şiirler",a:"Sylvia Plath",s:"read",r:3.75,m:"dark, tense",rev:"",d:"2024/02"},
+  {t:"On Küçük Zenci",a:"Agatha Christie",s:"read",r:4.0,m:"adventurous, mysterious",rev:"",d:"2023/10"},
+  {t:"Antigone",a:"Sophocles",s:"read",r:null,m:"",rev:"",d:"2023/06"},
+  {t:"Masumiyet Müzesi",a:"Orhan Pamuk",s:"read",r:3.75,m:"emotional, hopeful, sad",rev:"",d:"2023/09"},
+  {t:"Oidipus Kolonos'ta",a:"Sophocles",s:"read",r:5.0,m:"adventurous, dark, emotional, sad",rev:"",d:"2023/06"},
+  {t:"Uzakların Şarkısı",a:"Kaan Murat Yanık",s:"read",r:5.0,m:"adventurous, informative, mysterious, sad",rev:"",d:"2023/09"},
+  {t:"Zamanımızın Bir Kahramanı",a:"Mikhail Lermontov",s:"read",r:5.0,m:"adventurous, emotional, inspiring, sad",rev:"Vera'ya aşırı üzüldüm",d:"2023/06"},
+  {t:"Kral Oidipus",a:"Sophocles",s:"read",r:5.0,m:"dark, sad, tense",rev:"",d:"2023/05"},
+  {t:"Senin Cahilliğin Benim Yaşamımı Etkiliyor",a:"A.M. Celâl Şengör",s:"read",r:4.5,m:"informative, inspiring",rev:"",d:"2023/10"},
+  {t:"Bizans Şiir Antolojisi",a:"Siren Çelik",s:"read",r:5.0,m:"funny, informative, inspiring",rev:"",d:"2024/01"},
+  {t:"Tormesli Lazarillo",a:"Anonymous",s:"read",r:4.0,m:"adventurous, dark, emotional, funny",rev:"",d:"2025/01"},
+  {t:"Hizmetçinin Sırrı",a:"Freida McFadden",s:"read",r:3.5,m:"adventurous, dark, mysterious, tense",rev:"",d:"2026/02"},
+  {t:"Agnostisizm Ve İlahi Tragedya",a:"Diamond Tema",s:"read",r:5.0,m:"dark, informative, inspiring",rev:"",d:"2023/11"},
+  {t:"Bir Toplum Nasıl İntihar Eder?",a:"A.M. Celâl Şengör",s:"read",r:4.0,m:"informative, inspiring",rev:"",d:"2024/02"},
+  {t:"Mürebbiye",a:"Hüseyin Rahmi Gürpınar",s:"dnf",r:null,m:"",rev:"",d:"2025/07"},
+  {t:"Notre Dame'ın Kamburu",a:"Victor Hugo",s:"dnf",r:null,m:"",rev:"",d:"2023/09"},
+  {t:"Kitap Kurtları",a:"Emily Henry",s:"dnf",r:null,m:"",rev:"öf devam edicem sonra, sıktı da sıktı beni bu kitap tüm hevesim kaçtı",d:"2025/12"},
+  {t:"Portakal Ağacı Manastırı",a:"Samantha Shannon",s:"toread",r:null,m:"",rev:"",d:""},
+  {t:"Sefiller",a:"Victor Hugo",s:"toread",r:null,m:"",rev:"",d:""},
+  {t:"Madame Bovary",a:"Gustave Flaubert",s:"toread",r:null,m:"",rev:"",d:""},
+];
+
+const PAL=[["#3d2518","#7a4830"],["#1a2a38","#2a4a68"],["#2a1a3a","#4a2a60"],["#1a2a1a","#2a4a2a"],["#2a2a18","#4a4a28"],["#2a1818","#5a2a2a"],["#18202a","#283848"],["#281e10","#4a3820"],["#3a2a1a","#6a4a2a"],["#1a2828","#2a5048"],["#2a1a20","#5a2a3a"],["#281828","#4a2848"],["#182018","#285028"],["#181828","#282858"],["#282018","#504020"]];
+function gc(t){let h=0;for(let c of t)h=(h*31+c.charCodeAt(0))%PAL.length;return PAL[Math.abs(h)];}
+function sh(r){if(!r)return'<span style="color:var(--muted);font-size:0.65rem;">Puanlanmadı</span>';const f=Math.floor(r),h=(r%1)>=0.5;let s='★'.repeat(f);if(h)s+='½';s+='☆'.repeat(5-f-(h?1:0));return s;}
+
+let cf='all';
+function setFilter(btn,f){document.querySelectorAll('.fbtn').forEach(b=>b.classList.remove('on'));btn.classList.add('on');cf=f;renderBooks();}
+
+function renderBooks(){
+  const q=document.getElementById('searchInput').value.toLowerCase();
+  let fil=BOOKS.filter(b=>{
+    const mf=cf==='all'||(cf==='read'&&b.s==='read')||(cf==='dnf'&&b.s==='dnf')||(cf==='toread'&&b.s==='toread')||(cf==='5star'&&b.r===5.0);
+    const ms=!q||b.t.toLowerCase().includes(q)||b.a.toLowerCase().includes(q);
+    return mf&&ms;
+  });
+  document.getElementById('booksCount').textContent=fil.length+' kitap gösteriliyor';
+  const grid=document.getElementById('booksGrid');
+  grid.innerHTML='';
+  fil.forEach((b,i)=>{
+    const[c1,c2]=gc(b.t);
+    const div=document.createElement('div');
+    div.className='bcard';
+    div.style.cssText='opacity:0;transform:translateY(16px);transition:opacity .4s '+(i%8*0.05)+'s,transform .4s '+(i%8*0.05)+'s';
+    let badge='';
+    if(b.s==='dnf')badge='<div class="bcard-badge" style="background:var(--rust)">Bıraktım</div>';
+    if(b.s==='toread')badge='<div class="bcard-badge" style="background:var(--gold2)">Okuyacağım</div>';
+    div.innerHTML=badge+'<div class="bcard-cover" style="background:linear-gradient(160deg,'+c1+','+c2+')"><span class="bcard-cover-title">'+b.t+'</span></div><div class="bcard-title">'+b.t+'</div><div class="bcard-author">'+b.a+'</div><div class="bcard-stars">'+sh(b.r)+'</div>';
+    div.onclick=()=>openModal(b);
+    grid.appendChild(div);
+    requestAnimationFrame(()=>{div.style.opacity='1';div.style.transform='translateY(0)';});
+  });
+}
+
+function openModal(b){
+  const[c1,c2]=gc(b.t);
+  document.getElementById('modalCover').style.background='linear-gradient(160deg,'+c1+','+c2+')';
+  document.getElementById('modalTitle').textContent=b.t;
+  document.getElementById('modalAuthor').textContent=b.a;
+  document.getElementById('modalStars').textContent=sh(b.r).replace(/<[^>]*>/g,'');
+  document.getElementById('modalStars').innerHTML=sh(b.r);
+  const me=document.getElementById('modalMoods');
+  me.innerHTML=b.m?b.m.split(',').map(m=>'<span class="mood-pill">'+m.trim()+'</span>').join(''):'';
+  const re=document.getElementById('modalReview');
+  re.textContent=b.rev;
+  re.style.display=b.rev?'block':'none';
+  document.getElementById('modalDate').textContent=b.d?'Okunma tarihi: '+b.d:'';
+  document.getElementById('modalOverlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeModal(e){if(e.target===document.getElementById('modalOverlay'))closeModalBtn();}
+function closeModalBtn(){document.getElementById('modalOverlay').classList.remove('open');document.body.style.overflow='';}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModalBtn();});
+
+const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.08});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+renderBooks();
+</script>
+</body>
+</html>
